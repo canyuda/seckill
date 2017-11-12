@@ -52,6 +52,10 @@
           <element id="library" level="project" name="Maven: ognl:ognl:3.0.8" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.16.1-GA" />
           <element id="library" level="project" name="Maven: org.unbescape:unbescape:1.1.0.RELEASE" />
+          <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:3.9.0" />
+          <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.13.0" />
+          <element id="library" level="project" name="Maven: tk.mybatis:mapper:3.4.4" />
+          <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
