@@ -10,11 +10,22 @@
 
     <!--开启注解模式-->
     <!--1.自动注册DefaultAnnotationHandlerMapping和AnnotationHandlerAdapter-->
-    <!--2.提供一系列:数据绑定,数字和日期类format,@NumberFormat,@DataTimeFormat,xml,json,默认读写支持-->
-    <mvc:annotation-driven/>
+    <!--2.提供一系列:数据绑定,数字和日期类format,
+    @NumberFormat,@DataTimeFormat,xml,json,默认读写支持-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
+        <property name="converters">
+            <set>
+                <bean class="com.yuda.converter.StringToDateConverter"/>
+            </set>
+        </property>
+    </bean>
+
     <!--扫描Controller-->
     <context:annotation-config/>
     <context:component-scan base-package="com.yuda.web">
+        <!-- 仅仅扫描Controller -->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     <!-- servletMapping 路径为 "/" -->
@@ -25,6 +36,7 @@
     <!--映射静态资源,和上面那个一样的作用,不过功能好像更加强大,可以映射classpath里面的静态资源-->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
+    <!--thymeleaf模板解析器-->
     <bean class="org.thymeleaf.templateresolver.ServletContextTemplateResolver" id="templateResolver">
         <property name="prefix" value="WEB-INF/templates/"/>
         <property name="suffix" value=".html"/>
@@ -32,21 +44,23 @@
         <property name="cacheable" value="false"/>
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
-
+    <!--模板引擎-->
     <bean class="org.thymeleaf.spring4.SpringTemplateEngine" id="templateEngine">
         <property name="templateResolver" ref="templateResolver"/>
     </bean>
 
+    <!--Thymeleaf视图解析器-->
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver" id="viewResolver">
         <property name="templateEngine" ref="templateEngine"/>
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
-<!--    &lt;!&ndash;配置jsp,viewResolver&ndash;&gt;
-    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/jsps/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>-->
+    <!--    &lt;!&ndash;配置jsp,viewResolver&ndash;&gt;
+        <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+            <property name="prefix" value="/WEB-INF/jsps/"/>
+            <property name="suffix" value=".jsp"/>
+        </bean>-->
+
 
 </beans>

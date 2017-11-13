@@ -53,8 +53,8 @@ public class SeckillController {
     /**
      * 详情页
      *
-     * @param seckillId
-     * @param model
+     * @param seckillId 商品ID
+     * @param model     模型
      * @return
      */
     @RequestMapping(value = "/{seckillId}/detail", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class SeckillController {
         Seckill seckill = seckillService.getById(seckillId);
         //没找到相应商品,用户瞎传的id
         if (seckill == null) {
-            return "forward:/list";
+            return "forward:/seckill/list";
         }
         model.addAttribute("seckill", seckill);
         return "detail";
@@ -76,7 +76,7 @@ public class SeckillController {
     /**
      * ajax:json 获得ID
      *
-     * @param seckillId
+     * @param seckillId 商品ID
      */
     @RequestMapping(value = "/{seckillId}/exposer",
             method = RequestMethod.POST,
@@ -97,6 +97,14 @@ public class SeckillController {
         return result;
     }
 
+    /**
+     * 秒杀
+     *
+     * @param seckillId 商品ID
+     * @param md5   商品对应的密钥
+     * @param phone 电话
+     * @return
+     */
     @RequestMapping(value = "/{seckillId}/{md5}/execution",
             method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
@@ -129,11 +137,39 @@ public class SeckillController {
         return result;
     }
 
+    /**
+     * 获取服务器时间
+     *
+     * @return
+     */
     @RequestMapping(value = "/time/now", method = RequestMethod.GET)
     @ResponseBody
     public SeckillResult<Long> time() {
         Date date = new Date();
         return new SeckillResult<Long>(true, date.getTime());
+    }
+
+    /**
+     *  改变内容页面
+     * @param seckillId 商品ID
+     * @param model 模型
+     * @return
+     */
+    //TODO
+    @RequestMapping(value = "/{seckillId}/change", method = RequestMethod.GET)
+    public String change(@PathVariable(value = "seckillId") Long seckillId, Model model) {
+        loggger.debug("传入的ID:" + String.valueOf(seckillId));
+        //没传id
+        if (seckillId == null) {
+            return "redirect:/seckill/list";
+        }
+        Seckill seckill = seckillService.getById(seckillId);
+        //没找到相应商品,用户瞎传的id
+        if (seckill == null) {
+            return "forward:/seckill/list";
+        }
+        model.addAttribute("seckill", seckill);
+        return "change";
     }
 }
 

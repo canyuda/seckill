@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${user.u_id}"></h1>
+<h1 th:text="${user.username}"></h1>
+<h1 th:text="${user.password}"></h1>
+<h1 th:text="${#dates.format(user.birthday,'yyyy年MM月dd日')}"></h1>
+<h1 th:text="${#dates.format(user.createTime,'yyyy年MM月dd日')}"></h1>
+</body>
+</html>

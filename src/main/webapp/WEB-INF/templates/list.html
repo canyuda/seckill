@@ -32,6 +32,7 @@
                     <th>结束时间</th>
                     <th>创建时间</th>
                     <th>详情页</th>
+                    <th>修改</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,10 @@
                            target="_blank">
                             详情页
                         </a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/seckill/'+${seckill.seckillId}+'/change'}" class="btn btn-info"
+                           target="_blank">修改</a>
                     </td>
                 </tr>
                 </tbody>

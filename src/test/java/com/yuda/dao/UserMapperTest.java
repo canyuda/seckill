@@ -42,7 +42,7 @@ public class UserMapperTest {
     @Test
     public void update() throws Exception {
         User user = new User();
-        user.setU_id(1);
+        user.setU_id(3);
         user.setUsername("改后的名字");
         userMapper.update(user);
     }

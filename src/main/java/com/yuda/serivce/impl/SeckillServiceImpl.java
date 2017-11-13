@@ -37,7 +37,6 @@ import java.util.List;
  * 3.不是所有方法都要放到事务中,如只有一条的修改,只读操作不需要事务控制.
  */
 @Service
-@Transactional
 public class SeckillServiceImpl implements SeckillService {
 
     private final Logger loggger = LoggerFactory.getLogger(this.getClass());
@@ -71,6 +70,7 @@ public class SeckillServiceImpl implements SeckillService {
      * @return
      */
     @Override
+    @Transactional
     public Exposer exportSeckillUrl(long seckillId) {
         //通过Redis进行缓存 使用超时来维护redis
         //1. 访问redis
@@ -106,6 +106,7 @@ public class SeckillServiceImpl implements SeckillService {
      * @param md5
      */
     @Override
+    @Transactional
     public SeckillExecution executeSeckill(long seckillId, long userPhone, String md5) throws SeckillException, SeckillCloseException, RepeatKillException {
         //判断md5
         if (md5 == null || !md5.equals(getMD5(seckillId))) {

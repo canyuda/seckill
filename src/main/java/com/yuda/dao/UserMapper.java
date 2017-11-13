@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import com.yuda.entity.User;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Select;
 
 
 public interface UserMapper {

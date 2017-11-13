@@ -23,7 +23,7 @@ public class OkHttpDemo {
     public void demo1() {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("https://www.jd.com/")
+                .url("https://juejin.im/zhuanlan/backend")
                 .build();
         try {
             Response response = client.newCall(request).execute();

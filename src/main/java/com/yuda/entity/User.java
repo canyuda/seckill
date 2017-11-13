@@ -2,6 +2,9 @@ package com.yuda.entity;
 
 import lombok.Data;
 
+import javax.persistence.Transient;
+import java.util.Date;
+
 /**
  * @auther yuda
  * Create on 2017/11/10 10:31.
@@ -14,5 +17,6 @@ public class User {
     private Integer u_id;
     private String username;
     private String password;
-
+    private Date birthday;
+    private Date createTime;
 }
