@@ -39,4 +39,12 @@ public class OkHttpDemo {
             e.printStackTrace();
         }
     }
+
+
+    public String method1(String str){
+        StringBuilder sb= new StringBuilder(str);
+        sb.reverse();
+        return sb.toString();
+    }
+
 }

@@ -24,7 +24,6 @@ public class UserController {
     @RequestMapping(value = "/insert", method = RequestMethod.GET)
     public String insert(User user, Model model) {
         System.out.println(user);
-        System.out.println(user);
         model.addAttribute("user", user);
         return "user";
     }

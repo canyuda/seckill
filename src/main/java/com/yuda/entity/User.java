@@ -1,6 +1,7 @@
 package com.yuda.entity;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Transient;
 import java.util.Date;
